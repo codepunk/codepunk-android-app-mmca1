@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.codepunk.mmca1.ui.theme.MMCA1Theme
+import com.codepunk.mmca1.core.ui.MMCA1Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting("Codepunk")
                 }
             }
         }
@@ -38,6 +38,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     MMCA1Theme {
-        Greeting("Android")
+        Greeting("Codepunk")
     }
 }

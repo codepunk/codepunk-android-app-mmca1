@@ -1,47 +1,19 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin)
 }
 
 android {
-    namespace = "com.codepunk.mmca1"
+    namespace = "com.codepunk.mmca1.core"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.codepunk.mmca1"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = false
-        }
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        freeCompilerArgs = listOf(
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-        )
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildFeatures {
@@ -52,21 +24,32 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
-    packagingOptions {
-        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
-    implementation(libs.bundles.common)
-    implementation(libs.composeActivity)
+    implementation(libs.coreKtx)
+    //implementation("androidx.appcompat:appcompat:1.4.1")
+    //implementation("com.google.android.material:material:1.6.1")
     implementation(libs.bundles.compose)
     implementation(libs.material3)
-
-    implementation(project(":core"))
 
     testImplementation(libs.testJunit)
 
     androidTestImplementation(libs.bundles.commonTestAndroid)
-    debugImplementation(libs.bundles.commonDebug)
 }

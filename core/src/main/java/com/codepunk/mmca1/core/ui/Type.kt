@@ -1,4 +1,4 @@
-package com.codepunk.mmca1.ui.theme
+package com.codepunk.mmca1.core.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

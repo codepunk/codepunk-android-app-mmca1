@@ -1,4 +1,4 @@
-package com.codepunk.mmca1.ui.theme
+package com.codepunk.mmca1.core.ui
 
 import android.app.Activity
 import android.os.Build
